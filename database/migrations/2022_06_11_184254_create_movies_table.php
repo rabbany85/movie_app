@@ -13,19 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('movies', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('name');
-            $table->string('last_name');
-            $table->date('date_of_birth')->nullable();
-            $table->string('phone');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->text('description');
+            $table->date('release_date');
+            $table->text('url');
+            $table->unsignedBigInteger('user_id');
             $table->boolean('is_active')->default(1);
-            $table->string('role')->default('Customer');
-            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -37,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('movies');
     }
 };
